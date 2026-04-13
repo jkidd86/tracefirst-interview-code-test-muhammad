@@ -1,0 +1,31 @@
+= form_for @test do |f|
+  - if @test.errors.any?
+    #error_explanation
+      = "#{@test.errors.count} prohibited this test from being saved:"
+      %ul
+        - @test.errors.full_messages.each do |message|
+          %li= message
+  %br
+  .row.mb-3
+    .col-3.text-end
+      = f.label :name, class: 'form-label'
+    .col-6
+      = f.text_field :name, class: 'form-control', autofocus: true
+  .row.mb-3
+    .col-3.text-end
+      = f.label :result, class: 'form-label'
+    .col-6
+      = f.text_field :result, class: 'form-control'
+  .row.mb-3
+    .col-3.text-end
+      = f.label :animal_id, class: 'form-label'
+    .col-6
+      = f.collection_select :animal_id, @animals, :id, :name, class: 'form-select'
+  .row.mb-3
+    .col-3.text-end
+      = f.label :veterinarian_id, class: 'form-label'
+    .col-6
+      = f.collection_select :veterinarian_id, @veterinarians, :id, :name, class: 'form-select'
+  .row.card.card-body.bg-light
+    .col-7.offset-3
+      = f.submit @test.new_record? ? 'Create' : 'Update', class: 'btn', data: { disable_with: 'Please wait...' }

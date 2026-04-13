@@ -1,0 +1,32 @@
+%p#notice= notice
+.row.mt-2
+  .col-6
+    %h2
+      Veterinarians
+%br
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Status
+      %th Number
+      %th Admin
+  %tbody
+    - @veterinarians.each do |veterinarian|
+      %tr
+        %td= veterinarian.name
+        %td= veterinarian.status
+        %td= veterinarian.number
+        %td= veterinarian.admin
+        %td
+          = button_to 'Show', veterinarian_path(veterinarian), method: :get
+          = button_to 'Edit', edit_veterinarian_path(veterinarian), method: :get
+          = button_to 'Destroy', veterinarian_path(veterinarian), method: :delete, data: { confirm: 'Are you sure?' }
+%br
+= link_to 'New Veterinarian', new_veterinarian_path
+
+:css
+  .button_to,
+  .button_to div {
+    display: inline;
+  }

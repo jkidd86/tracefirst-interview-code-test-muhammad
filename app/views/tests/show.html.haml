@@ -1,0 +1,25 @@
+.row.mt-2
+  .col-6
+    %h2
+      Test
+      %small.text-muted= @test.name
+
+%table.table.table-sm.mt-3
+  %tr
+    %td Name
+    %td= @test.name
+  %tr
+    %td Result
+    %td= @test.result
+  %tr
+    %td Animal
+    %td= @test.animal&.unique_tag
+  %tr
+    %td Veterinarian
+    %td= @test.veterinarian&.name
+  %tr
+    %td Actions
+    %td
+      = link_to 'Edit', edit_test_path(@test)
+      = link_to 'Back', tests_path
+

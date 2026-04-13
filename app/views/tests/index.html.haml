@@ -1,0 +1,32 @@
+%p#notice= notice
+.row.mt-2
+  .col-6
+    %h2
+      Tests
+%br
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Result
+      %th Animal
+      %th Veterinarian
+  %tbody
+    - @tests.each do |test|
+      %tr
+        %td= test.name
+        %td= test.result
+        %td= test.animal&.unique_tag
+        %td= test.veterinarian&.name
+        %td
+          = button_to 'Show', test_path(test), method: :get
+          = button_to 'Edit', edit_test_path(test), method: :get
+          = button_to 'Destroy', test_path(test), method: :delete, data: { confirm: 'Are you sure?' }
+%br
+= link_to 'New Test', new_test_path
+
+:css
+  .button_to,
+  .button_to div {
+    display: inline;
+  }

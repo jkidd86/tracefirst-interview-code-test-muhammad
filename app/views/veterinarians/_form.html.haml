@@ -1,0 +1,31 @@
+= form_for @veterinarian do |f|
+  - if @veterinarian.errors.any?
+    #error_explanation
+      = "#{@veterinarian.errors.count} prohibited this veterinarian from being saved:"
+      %ul
+        - @veterinarian.errors.full_messages.each do |message|
+          %li= message
+  %br
+  .row.mb-3
+    .col-3.text-end
+      = f.label :name, class: 'form-label'
+    .col-6
+      = f.text_field :name, class: 'form-control', autofocus: true
+  .row.mb-3
+    .col-3.text-end
+      = f.label :status, class: 'form-label'
+    .col-6
+      = f.text_field :status, class: 'form-control'
+  .row.mb-3
+    .col-3.text-end
+      = f.label :number, class: 'form-label'
+    .col-6
+      = f.text_field :number, class: 'form-control'
+  .row.mb-3
+    .col-3.text-end
+      = f.label :admin, class: 'form-label'
+    .col-6
+      = f.check_box :admin, disabled: true, class: 'form-check-input'
+  .row.card.card-body.bg-light
+    .col-7.offset-3
+      = f.submit @veterinarian.new_record? ? 'Create' : 'Update', class: 'btn', data: { disable_with: 'Please wait...' }

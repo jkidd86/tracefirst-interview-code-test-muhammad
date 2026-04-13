@@ -1,0 +1,10 @@
+.row.mt-2
+  .col-6
+    %h2
+      Editing Test
+
+  .col-6.text-end
+    = link_to 'Show', @test, class: 'btn'
+    = link_to 'Cancel', tests_path, class: 'btn'
+
+= render 'form'

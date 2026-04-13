@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %title Trace First Code Test
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    %link{rel: "stylesheet", href: "https://latex.vercel.app/style.css"}
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload'
+    = javascript_importmap_tags
+
+  %body
+    .topnav
+      = nav_link 'Animals', animals_path
+      = nav_link 'Veterinarian', veterinarians_path
+      = nav_link 'Tests', tests_path
+    .container-fluid
+      = yield

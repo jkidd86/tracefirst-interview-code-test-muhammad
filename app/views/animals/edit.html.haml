@@ -1,0 +1,10 @@
+.row.mt-2
+  .col-6
+    %h2
+      Editing Animal
+
+  .col-6.text-end
+    = link_to 'Show', @animal, class: 'btn'
+    = link_to 'Cancel', animals_path, class: 'btn'
+
+= render 'form'

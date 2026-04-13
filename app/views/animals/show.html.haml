@@ -1,0 +1,22 @@
+.row.mt-2
+  .col-6
+    %h2
+      Animal
+      %small.text-muted= @animal.name
+
+%table.table.table-sm.mt-3
+  %tr
+    %td Unique tag
+    %td= @animal.unique_tag
+  %tr
+    %td Species
+    %td= @animal.species
+  %tr
+    %td Breed
+    %td= @animal.breed
+  %tr
+    %td Actions
+    %td
+      = link_to 'Edit', edit_animal_path(@animal)
+      = link_to 'Back', animals_path
+

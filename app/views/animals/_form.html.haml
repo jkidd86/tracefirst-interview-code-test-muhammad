@@ -1,0 +1,26 @@
+= form_for @animal do |f|
+  - if @animal.errors.any?
+    #error_explanation
+      = "#{@animal.errors.count} prohibited this animal from being saved:"
+      %ul
+        - @animal.errors.full_messages.each do |message|
+          %li= message
+  %br
+  .row.mb-3
+    .col-3.text-end
+      = f.label :unique_tag, class: 'form-label'
+    .col-6
+      = f.text_field :unique_tag, class: 'form-control', autofocus: true
+  .row.mb-3
+    .col-3.text-end
+      = f.label :species, class: 'form-label'
+    .col-6
+      = f.text_field :species, class: 'form-control'
+  .row.mb-3
+    .col-3.text-end
+      = f.label :breed, class: 'form-label'
+    .col-6
+      = f.text_field :breed, class: 'form-control'
+  .row.card.card-body.bg-light
+    .col-7.offset-3
+      = f.submit @animal.new_record? ? 'Create' : 'Update', class: 'btn', data: { disable_with: 'Please wait...' }

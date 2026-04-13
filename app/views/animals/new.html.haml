@@ -1,0 +1,9 @@
+.row.mt-2
+  .col-6
+    %h2
+      New Animal
+
+  .col-6.text-end
+    = link_to 'Cancel', animals_path, class: 'btn'
+
+= render 'form'

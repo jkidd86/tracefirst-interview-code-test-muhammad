@@ -1,0 +1,10 @@
+.row.mt-2
+  .col-6
+    %h2
+      Editing Veterinarian
+
+  .col-6.text-end
+    = link_to 'Show', @veterinarian, class: 'btn'
+    = link_to 'Cancel', veterinarians_path, class: 'btn'
+
+= render 'form'

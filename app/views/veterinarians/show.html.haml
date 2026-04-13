@@ -1,0 +1,25 @@
+.row.mt-2
+  .col-6
+    %h2
+      Veterinarian
+      %small.text-muted= @veterinarian.name
+
+%table.table.table-sm.mt-3
+  %tr
+    %td Name
+    %td= @veterinarian.name
+  %tr
+    %td Status
+    %td= @veterinarian.status
+  %tr
+    %td Number
+    %td= @veterinarian.number
+  %tr
+    %td Admin
+    %td= @veterinarian.admin
+  %tr
+    %td Actions
+    %td
+      = link_to 'Edit', edit_veterinarian_path(@veterinarian)
+      = link_to 'Back', veterinarians_path
+
