@@ -17,8 +17,10 @@ class VeterinariansController < ApplicationController
   def create
     @veterinarian = Veterinarian.new(veterinarian_params)
 
+    is_valid_phone_number = @veterinarian.number.present? && @veterinarian.number.match?(Veterinarian::PHONE_REGEXP)
+
     respond_to do |format|
-      if @veterinarian.save
+      if is_valid_phone_number && @veterinarian.save
         format.html { redirect_to @veterinarian, notice: 'Veterinarian was successfully created.' }
         format.json { render :show, status: :created, location: @veterinarian }
       else

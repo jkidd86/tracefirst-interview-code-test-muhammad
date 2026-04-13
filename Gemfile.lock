@@ -164,6 +164,7 @@ GEM
     nio4r (2.7.5)
     nokogiri (1.19.1-x86_64-darwin)
       racc (~> 1.4)
+    phonelib (0.10.16)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
@@ -284,6 +285,7 @@ DEPENDENCIES
   net-imap
   net-pop
   net-smtp
+  phonelib
   propshaft
   puma (>= 5.0)
   rack-mini-profiler (~> 3.0)
