@@ -13,3 +13,8 @@ animal_two:
   unique_tag: "3241-2434"
   species: "Domestic Cattle"
   breed: "Red angus"
+
+animal_three:
+  unique_tag: "AQU-555"
+  species: "Domestic Cattle"
+  breed: "Red angus"
