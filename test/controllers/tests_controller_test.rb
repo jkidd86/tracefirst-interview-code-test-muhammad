@@ -10,6 +10,11 @@ class TestsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'should load index in exactly 3 queries' do
+    assert_queries_count(3) { get tests_url }
+    assert_response :success
+  end
+
   test 'should get new' do
     get new_test_url
     assert_response :success
