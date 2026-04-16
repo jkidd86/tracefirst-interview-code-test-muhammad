@@ -49,4 +49,11 @@ class AnimalsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to animals_url
   end
+
+  test 'should redirect with message when deleting animal with associated tests' do
+    delete animal_url(animals(:animal_one))
+    assert_redirected_to animals_url
+    assert_equal 'Animal cannot be deleted while it has associated tests.', flash[:notice]
+  end
+
 end

@@ -1,6 +1,6 @@
 class AnimalsController < ApplicationController
   before_action :set_animal, only: %i[show edit update destroy]
-  rescue_from ActiveRecord::InvalidForeignKey, with: :invalid_foreign_key
+  rescue_from ActiveRecord::DeleteRestrictionError, with: :delete_restricted
 
   def index
     @animals = Animal.all
@@ -50,7 +50,9 @@ class AnimalsController < ApplicationController
     params.require(:animal).permit(:unique_tag, :species, :breed)
   end
 
-  def invalid_foreign_key
-    redirect_to animals_path, notice: 'Animal can not be destroyed.'
+  # Added delete_restricted handler for clearer, meaningful naming and to handle DeleteRestrictionError
+  def delete_restricted
+    redirect_to animals_path, notice: 'Animal cannot be deleted while it has associated tests.'
   end
+
 end
