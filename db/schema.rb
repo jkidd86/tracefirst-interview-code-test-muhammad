@@ -10,36 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_21_141910) do
-
+ActiveRecord::Schema[8.1].define(version: 2026_04_16_182955) do
   create_table "animals", force: :cascade do |t|
-    t.string "unique_tag"
+    t.date "birth_date"
+    t.string "breed"
+    t.datetime "created_at", null: false
     t.string "name"
     t.string "species"
-    t.string "breed"
-    t.date "birth_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.string "unique_tag"
+    t.datetime "updated_at", null: false
+    t.index ["unique_tag"], name: "index_animals_on_unique_tag", unique: true
   end
 
-  create_table "tests", force: :cascade do |t|
+  create_table "tests", id: :integer, default: nil, force: :cascade do |t|
+    t.integer "animal_id"
+    t.datetime "created_at", null: false
     t.string "name"
     t.string "result"
-    t.integer "animal_id"
+    t.datetime "updated_at", null: false
     t.integer "veterinarian_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.index ["animal_id"], name: "index_tests_on_animal_id"
     t.index ["veterinarian_id"], name: "index_tests_on_veterinarian_id"
   end
 
   create_table "veterinarians", force: :cascade do |t|
-    t.string "name"
-    t.string "status"
     t.boolean "admin", default: false
+    t.datetime "created_at", null: false
+    t.string "name"
     t.string "number"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "tests", "animals"
