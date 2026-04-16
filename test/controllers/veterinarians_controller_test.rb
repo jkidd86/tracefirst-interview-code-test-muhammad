@@ -44,11 +44,19 @@ class VeterinariansControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to veterinarian_url(@veterinarian)
   end
 
-  test 'should destroy veterinarian' do
-    assert_difference('Veterinarian.count', -1) do
-      delete veterinarian_url(veterinarians(:veterinarian_two))
+  test 'should soft delete veterinarian' do
+    vet_id = veterinarians(:veterinarian_three).id
+    assert_no_difference('Veterinarian.unscoped.count') do
+      delete veterinarian_url(veterinarians(:veterinarian_three))
     end
-
+    assert_not_nil Veterinarian.unscoped.find(vet_id).deleted_at
     assert_redirected_to veterinarians_url
   end
+
+  test 'should redirect with message when deleting veterinarian with associated tests' do
+    delete veterinarian_url(veterinarians(:veterinarian_one))
+    assert_redirected_to veterinarians_url
+    assert_equal 'Cannot be deleted while it has associated tests.', flash[:notice]
+  end
+
 end
