@@ -9,3 +9,9 @@ test_one:
   veterinarian: veterinarian_one
   name: "Bovine Enteric Disease Panel"
   result: "Negative"
+
+test_two:
+  animal: animal_three
+  veterinarian: veterinarian_three
+  name: "Bovine Enteric Disease Panel 2"
+  result: "Negative"

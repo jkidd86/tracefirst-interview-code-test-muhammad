@@ -15,3 +15,9 @@ veterinarian_two:
   status: "offline"
   admin: true
   number: "+24986502759"
+
+veterinarian_three:
+  name: "Tom"
+  status: "available"
+  admin: false
+  number: "+08765328496"
