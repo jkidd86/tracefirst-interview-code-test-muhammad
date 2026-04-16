@@ -54,8 +54,11 @@ class VeterinariansController < ApplicationController
     @veterinarian = Veterinarian.find(params[:id])
   end
 
+  # :admin is intentionally excluded: permission changes must not
+  # be allowed through user-facing forms.
+  # Please don't add admin in permit params as this will add security risk.
   def veterinarian_params
-    params.require(:veterinarian).permit!
+    params.require(:veterinarian).permit(:name, :status, :number)
   end
 
   def invalid_foreign_key

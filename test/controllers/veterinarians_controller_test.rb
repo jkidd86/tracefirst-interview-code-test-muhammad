@@ -19,7 +19,6 @@ class VeterinariansControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Veterinarian.count') do
       post veterinarians_url, params: { veterinarian: { name: 'Karl',
                                                         status: 'available',
-                                                        admin: false,
                                                         number: '+09876589365' } }
     end
 
@@ -39,7 +38,6 @@ class VeterinariansControllerTest < ActionDispatch::IntegrationTest
   test 'should update veterinarian' do
     patch veterinarian_url(@veterinarian), params: { veterinarian: { name: 'Karl',
                                                                      status: 'unavailable',
-                                                                     admin: false,
                                                                      number: '+09876989365' } }
     assert_redirected_to veterinarian_url(@veterinarian)
   end
@@ -51,4 +49,18 @@ class VeterinariansControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to veterinarians_url
   end
+
+  test 'should not allow admin escalation on update' do
+    patch veterinarian_url(@veterinarian), params: { veterinarian: { admin: true } }
+    assert_equal false, @veterinarian.reload.admin
+  end
+
+  test 'should not allow admin escalation on create' do
+    post veterinarians_url, params: { veterinarian: { name: 'Karl',
+                                                      status: 'available',
+                                                      number: '+09876589365',
+                                                      admin: true } }
+    assert_equal false, Veterinarian.last.admin
+  end
+
 end
